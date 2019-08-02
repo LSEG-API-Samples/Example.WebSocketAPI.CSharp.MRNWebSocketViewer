@@ -50,7 +50,7 @@ The following is the steps to get the MRN Story data from the ADS server.
       {
 
           _WebSocketClient =new WebSocketConnectionClient("client1", 
-                            new Uri(endpointServer), "tr_JSON2")
+                            new Uri(endpointServer), "tr_json2")
                             {Cts = new CancellationTokenSource()};
 
           _mrnManager = new MrnStoryManager(_WebSocketClient);
