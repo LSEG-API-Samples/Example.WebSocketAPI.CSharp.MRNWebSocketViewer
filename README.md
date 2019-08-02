@@ -4,7 +4,7 @@
 
 [Elektron WebSocket API](https://developers.refinitiv.com/elektron/WebSocket-api/learning) is a server-side API which provides an interface to create direct WebSocket access to any OMM Content via ADS. The API leverages standard JSON and WebSocket protocols to be easy to implement and understand. No client API is required and it does mean that developer can use any programming language which provides a JSON parser and a client WebSocket library to connecting to the ADS server and then retrieving or posting the data using the data and messages specification provided on [WebSocket API Developer Guide](https://docs-developers.refinitiv.com/1563871102906/14977/).
 
-This article provides a sample application which demonstrates how to use .NET Core SDK with WPF to create a desktop application to retrieving and displaying MRN News Story from the WebSocket server on ADS 3.2.1 or higher version. The application use ClientWebSocket interface from .NET Core framework with JSON.NET library to create a Client WebSocket adapter library for communicating with WebSocket server on the ADS. The main reasons for using .NET Core SDK is that we can re-use the WebSocket adapter on multiple platforms and architectures. We can build an application that will run on Windows, but also on Linux, macOS and on different architectures. This is beneficial a lot to many use case, including desktop applications.
+This article provides a sample application which demonstrates how to use .NET Core SDK with WPF to create a desktop application to retrieving and displaying MRN News Story from the WebSocket server on ADS 3.2.1 or higher version. The application use ClientWebSocket interface from .NET Core framework with JSON.NET library to create a Client WebSocket adapter library for communicating with the WebSocket server on the ADS. The main reasons for using .NET Core SDK is that we can re-use the WebSocket adapter on multiple platforms and architectures. We can build an application that will run on Windows, but also on Linux, macOS and on different architectures. This is beneficial a lot to many use case, including desktop applications.
 
 Though .NET WPF application currently works only on the Windows platform, we also provide a sample console application for testing the WebSocket functionality and the user can build and run the console app on multiple platforms as well. 
 
@@ -12,26 +12,26 @@ Please note that the sample application can just be connecting and retrieving MR
 
 ## Prerequisites
 
-* User must have access to existing TREP 3.2.1 or higher which provide a WebSocket connection from Elektron service. The service must support NewsTextAnalytics domain and the user must have permission to request MRN_STORY RIC from server.
+* User must have access to existing TREP 3.2.1 or higher which provide a WebSocket connection from Elektron service. The service must support NewsTextAnalytics domain and the user must have permission to request MRN_STORY RIC from the server.
 * [.NET Core 3 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0) Preview or later version. It requires version 3 or higher because it's the first version which supports desktop application using WPF and Winform. Please find additional details from [MSDN dev blog](https://devblogs.microsoft.com/dotnet/net-core-3-and-support-for-windows-desktop-applications/) and the following [MSDN article](https://docs.microsoft.com/en-us/dotnet/core/porting/wpf?WT.mc_id=ondotnet-c9-cxa). 
 * Visual Studio 2019 or Visual Code to compile and build projects. 
 * Understand MRN Story content. Please find more details from [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://developers.refinitiv.com/elektron/elektron-sdk-cc/docs?content=8681&type=documentation_item) and there are many articles explain about the MRN Story on Developer Portal. If you have experience with N2_UBMS previously, you can see a comparison from the following [article](https://developers.refinitiv.com/article/machine-readable-news-mrn-n2_ubms-comparison-and-migration-guide).
 
 ## Sample Application
 
-![application](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/MainScreenWithStoryPage.JPG)
+![application](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/MainScreenWithStoryPage.JPG)
 
-The main solution for the sample application consisting of four project. There are two project for WPF Desktop application and the sample console application. Another two projects are additional libraries for WebSocket Client adapter and MarketData WebSocket library. 
+The main solution for the sample application consisting of four projects. There is two projects for WPF Desktop application and the sample console application. Another two projects are additional libraries for WebSocket Client adapter and MarketData WebSocket library. 
 
-* The WebSocket client adapter is a library build on top of .NET Core ClientWebSocket class. It is responsible for handling a connection to a WebSocket server and sending or receiving a message from the ADS. The adapter provides a set of callback functions or delegates for handling and raising events to notify the application when it received a new message from the server. The application also provide an events for a connection status and errors from .NET ClientWebSocket. 
+* The WebSocket client adapter is a library built on top of .NET Core ClientWebSocket class. It is responsible for handling a connection to a WebSocket server and sending or receiving a message from the ADS. The adapter provides a set of callback functions or delegates for handling and raising events to notify the application when it received a new message from the server. The application also provides events for connection status and errors from .NET ClientWebSocket. 
 
-* The MarketData WebSocket library is responsible for handling business logic and creating a data model from the MRN JSON data. It also takes responsibility for managing the MRN update message and assembling the MRN fragment and then verifying and decompressing the data to a JSON plain-text. The library also provides an additional interface to convert MRN JSON plain-text to MRN data model class so that the application can access the MRN data model rather than parsing the data from JSON string directly. The library also provides a set of events for delivering an MRN Story data to the application layer and also provide an events to notify the application when it has an error inside the library. 
+* The MarketData WebSocket library is responsible for handling business logic and creating a data model from the MRN JSON data. It also takes responsibility for managing the MRN update message and assembling the MRN fragment and then verifying and decompressing the data to a JSON plain-text. The library also provides an additional interface to convert MRN JSON plain-text to MRN data model class so that the application can access the MRN data model rather than parsing the data from JSON string directly. The library also provides a set of events for delivering an MRN Story data to the application layer and also provide events to notify the application when it has an error inside the library. 
 
 ## How the application works
 
-The following sequence diagram depics overview of application workflow from user point of veiw to the WebSocket server layer.
+The following sequence diagram depicts an overview of application workflow from the user point of view to the WebSocket server layer.
 
-![MRNWebSocketViewerApp](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/sequence_overall.jpg)
+![MRNWebSocketViewerApp](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/sequence_overall.jpg)
 
 The following is the steps to get the MRN Story data from the ADS server.
 
@@ -41,9 +41,9 @@ The following is the steps to get the MRN Story data from the ADS server.
 
 * The application then passes input parameters to WebSocketConnectionClient when it creates a new object. This class will be used by MrnStoryManager to make a connection to a WebSocket server and to send and receive a message from the server. Note that it has to add subprotocol "**tr_JSON2**" to connection option otherwise, the server will not accept the connection. 
 
-### How the application receive message from a WebSocket Connection
+### How the application receives a message from a WebSocket Connection
 
-* In order to receive the message, the MrnStoryManager will call method Run() to start a new long running task which implement a loop for receive a message from .NET ClientWebSocket. It has to run until the user stop the operation and exit the appliation. The implentation of this class is asynchronous opertation and below is snippet of codes for the implementation from the MRN Viewer app.
+* In order to receive the message, the MrnStoryManager will call method Run() to start a new long-running task which implements a loop for receiving a message from .NET ClientWebSocket. It has to run until the user stops the operation and exit the application. The implementation of this class is asynchronous operation and below is a snippet of codes for the implementation from the MRN Viewer app.
 
 ```C#
  await Task.Run(async () =>
@@ -65,7 +65,7 @@ The following is the steps to get the MRN Story data from the ADS server.
 
       }).ConfigureAwait(false);
 ```
-And below is the implmentation of the Run() method. It's asynchronous method which implement while loop to receive message from WebSocket connection.
+And below is the implementation of the Run() method. It's an asynchronous method which implements while loop to receive a message from WebSocket connection.
 
 ```C#
   public async Task Run()
@@ -240,7 +240,7 @@ private bool ProcessFieldData(Dictionary<string, object> Fields)
 
 * When a data item requires only a single message, then TOT_SIZE will equal the number of bytes in the FRAGMENT and FRAG_NUM will be 1. When multiple messages are required, then the data item can be deemed as fully received once the sum of the number of bytes of each FRAGMENT equals TOT_SUM. The consumer will also observe that all FRAG_NUM range from 1 to the number of a fragment, with no intermediate integers, skipped. In other words, a data item transmitted over three messages will contain FRAG_NUM values of 1, 2 and 3. Above algorithm will check if a message is a complete one, then it will decompressing the data and generate an event to the application layer by calling RaiseMrnMessageEvent.
 
-### How application close a connection
+### How application closes a connection
 
 To close a connection the user can click a Disconnect button and the internal codes will set Stop flag to be true. In this situation they will call Abort() and Dispose() to close the connection to the server like the following snippet of codes.
 
@@ -260,17 +260,17 @@ To close a connection the user can click a Disconnect button and the internal co
             }
 ```
 
-## Buid and Run Sample applications
+## Build and Run Sample applications
 
 There are two sample applications in the Visual Studio solution, MRNViewerApp which is a WPF desktop application, and WebSocketMRNConsumerApp which is a simple console application. 
 
 ### Build and Run WebSocketMRNConsumerApp
 
-The WebSocketMRNConsumerApp is a console application demonstrate how to use the WebSokcetAdapter with the MRNManager to open a WebSocket connection to a WebSocket server, send an item request and handling the response message from the server. The example just prints MRN JSON data that application receives to console output.
+The WebSocketMRNConsumerApp is a console application demonstrate how to use the WebSokcetAdapter with the MRNManager to open a WebSocket connection to a WebSocket server, send an item request and handling the response message from the server. The example just prints MRN JSON data that the application receives to console output.
 
-You may follow the follwing steps to build the application.
+You may follow the following steps to build the application.
 
-1) Run windows command line or using terminal on macOS or Linux. Based on mrnWebSocketviewer repository you downloads from GitHub, change foler to WebSocketMRNConsumerApp.
+1) Run the Windows command line or using the terminal on macOS or Linux. Based on mrnWebSocketviewer repository you download from GitHub, change the folder to WebSocketMRNConsumerApp.
 
 2) Make sure that you are running with .NET Core 3.0. Just check by running **dotnet --version**. We are testing with .NET Core 3 Preview 7 which is the latest version at the time we write this article.
 
@@ -312,7 +312,7 @@ Build succeeded.
 
 Time Elapsed 00:00:08.54
 ```
-Note that if you want [Self Contained deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/), you can run **dotnet publish** command as below command where "-c release" is for release build and "release_build" is the name of outputfolder under WebSocketMRNConsumerApp folder.
+Note that if you want [Self Contained deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/), you can run **dotnet publish** command as below command where "-c release" is for release build and "release_build" is the name of output folder under WebSocketMRNConsumerApp folder.
 
 ```
 dotnet publish -c release -r win-x64 -o release_build/
@@ -320,9 +320,9 @@ dotnet publish -c release -r win-x64 -o release_build/
 You can change **win-x64** to another OS and you can find the list from [rid-catalog page](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog).
 
 4) Change folder to "**bin\Debug\netcoreapp3.0**", you should see **WebSocketMRNConsumerConsoleApp.exe** or **WebSocketMRNConsumerConsoleApp** executable file on Linux or macOS.
-![Console App](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/consoleappfolder1.JPG)
+![Console App](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/consoleappfolder1.JPG)
 
-5) Run WebSocketMRNConsumerConsoleApp executeable file and you should see the console output like this.
+5) Run WebSocketMRNConsumerConsoleApp executable file and you should see the console output like this.
 
 ```
 Starting MRN WebSocket Consumer app. Press Ctrl+C to exit.
@@ -344,7 +344,6 @@ Login name:apitest
 Login Refresh stream:Open state:Ok code: status text:Login accepted by host APIS21.
 *********************************************************************
 
-
 ******************* Process MRN Message Events **********************
 TimeStamp:7/30/2019 10:20:05 AM
 Received Refresh 7/30/2019 10:20:05 AM
@@ -355,7 +354,6 @@ Context ID:3752
 Prod Perm:10001
 Fragment Count=1 Total Size=0 bytes
 *********************************************************************
-
 
 ******************* Process MRN Message Events **********************
 TimeStamp:7/30/2019 10:20:08 AM
@@ -387,7 +385,6 @@ Fragment Count=1 Total Size=1422 bytes
   "body": "\nJakarta (ANTARA) - Sejumlah peristiwa di wilayah Jakarta terjadi pada Senin (29/7). Mulai dari kualitas udara ibu kota yang tidak sehat, kritikan DPRD ke Pemprov DKI hingga lokasi pemotongan hewan kurban.\n\nBerikut rangkuman berita metropolitan yang disajikan oleh LKBN ANTARA.\n\nJakarta masih menyandang predikat sebagai kota dengan kualitas udara terkotor di dunia dengan indeks kualitas udara di laman resmi AirVisual pada Senin pagi pukul 06.00 WIB mencapai angka 188 mikrogram per meter kubik.\n\nPeringkat kedua disusul oleh Tashkent, Uzbekistan dengan angka AQI sebesar 173 mikrogram per meter kubik.\n\nSelengkapnya bisa dibaca di sini\n\nTerkait kualitas udara yang buruk, Dewan Perwakilan Rakyat Daerah (DPRD) DKI Jakarta mendesak Gubernur Anies Baswedan agar segera menyikapi persoalan polusi udara di ibu kota yang terus memprihatinkan karena berdampak buruk bagi kesehatan masyarakat.\n\n\"Jika kualitas udara sudah melebihi batas ambang kesehatan, maka kita harus memaksa gubernur untuk bagaimana mengatasi ini,\" kata Wakil Ketua DPRD DKI Jakarta Ramly HI Muhammad.\n\nMenurut dia, kondisi kualitas udara yang semakin memprihatinkan itu harus disikapi secara cepat oleh pemangku kepentingan terkait. Jika tidak ada respon terhadap masalah bisa menimbulkan ancaman besar di sisi kesehatan.\n\nKarena itu, dalam waktu dekat unsur DPRD segera melakukan pertemuan dengan gubernur untuk mencari solusi dan jalan keluar terkait buruknya kualitas udara di ibu kota.\n\nSelengkapnya bisa dibaca di sini\n\n\n\nMenjelang Hari Raya Idul Adha, Pemerintah Kota Administrasi Jakarta Utara akan melakukan pendataan hewan kurban.\n\nHal itu dilakukan sesuaj Instruksi Gubernur DKI JakartaNomor 46 Yahun 2019 tentang Pengendalian Penampungan dan Pemotongan Hewan dalam rangka Idul Adha 2019/1440 Hijriyah.\n\nAsisten Kesejahteraan Rakyat Kota Administrasi Jakarta Utara, Wawan Budi Rohman mengatakan, pihaknya telah meminta para camat dan lurah melakukan pendataan lokasi penjualan hewan kurban dan lokasi pemotongan.\n\n\"Kita ingin semua lokasi penjualan atau pemotongan tersebut didata semua dan segera dilaporkan ke tingkat kota,\" kata Wawan.\n\nSedangkan untuk lokasi pemotongan, Wawan menuturkan sudah ada lokasi umum seperti masjid, sekolah, kantor atau lainnya.\n\nSelengkapnya bisa dibaca di sini\n"
 }
 *********************************************************************
-
 
 ******************* Process MRN Message Events **********************
 TimeStamp:7/30/2019 10:20:08 AM
@@ -459,12 +456,11 @@ Exit the app
 
 When the connection between the console application and WebSocket server has gone down, the MRN Manager will close the connection and attempt to make a new connection to the server on behalf of the application. So user should be able to receive the update message when it can establish to the WebSocket server again.
 
+## Build and Run MRNViewerApp
 
-## Build and Run MRNWebsocketViewerApp
+The MRNWebSocketViewerApp is a WPF desktop application which supports running on Windows OS only. This project using WPF with .NET Core 3.0 Preview to create the application so you can deploy the app using Self-Contained Deployment(SCD) like the other .NET Core application. The benefit of using this approach, you have control of the version of .NET Core that is deployed with your app and the other apps or updates cannot break the behavior. While some of the disadvantages are that the size of your deployment package is relatively large since you have to include .NET Core as well as your app and its third-party dependencies. Anyway, it still easy to copy only the target build directory to share the application. 
 
-The MRNWebSocketViewerApp is a WPF desktop application which supports running on Windows OS only. This project using WPF with .NET Core 3.0 Preview to create the application so you can deploy the app using Self-Contained Deployment(SCD) like the other .NET Core application. The benefit of using this approach, you have control of the version of .NET Core that is deployed with your app and the other apps or updates cannot break the behavior. While some of the disadvantages is that the size of your deployment package is relatively large, since you have to include .NET Core as well as your app and its third-party dependencies. Anyway, it still easy to copy only the target build directory to share the application. 
-
-To build the desktop app, you don't need to open the project in Visual Studio. Instead, you can just run **dotnet build** or **dotnet publish** command to build the app. However, if you  want to see the UI design view, you need to open project with Visual Studio 2019. At the time we write this article Visual Studio 2017 and previous version does not support WPF project with .NET Core.
+To build the desktop app, you don't need to open the project in Visual Studio. Instead, you can just run **dotnet build** or **dotnet publish** command to build the app. However, if you want to see the UI design view, you need to open a solution file with Visual Studio 2019. At the time we write this article Visual Studio 2017 and the previous version does not support WPF project with .NET Core.
 
 ### Building the Desktop App
 
@@ -498,9 +494,9 @@ Build succeeded.
 Time Elapsed 00:00:11.23
 ```
 
-Then you can find MRNWebSocketViewerApp.exe which is WPF application under folder "bin\Debug\netcoreapp3.0".
+Then you can find MRNWebSocketViewerApp.exe which is WPF application under the folder "bin\Debug\netcoreapp3.0".
 
-3) If you wish to use Self Contained Deployment you can also run the same command line as the console application to build .NET app.
+3) If you wish to use Self Contained Deployment you can also run the same command line as the console application to build a .NET app.
 
 ```
 dotnet publish -c release -r win-x64 -o mrnviewerapp_release/
@@ -511,42 +507,41 @@ Then you can copy mrnviewerapp_release to run on the other Windows 10 and you do
 
 * User has to launch MRNWebSocketViewerApp.exe and then it should show the following main desktop application.
 
-    ![MRNWebSocketViewerApp](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/MRNViewerAppExe.JPG)
+    ![MRNWebSocketViewerApp](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/MRNViewerAppExe.JPG)
 
-    ![MRNWebSocketViewerApp2](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/exe1.JPG)
+    ![MRNWebSocketViewerApp2](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/exe1.JPG)
 
 * User can set DACS Login(User, AppId and change Position) by click Login button and change WebSocket endpoint to your ADS server.
 
-    ![LoginAndEndpoint](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/exe2.JPG)
+    ![LoginAndEndpoint](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/exe2.JPG)
 
-* The application shows the Connection status with an additional message via the Desktop Title Bar. The following sample screenshot shows sample messages from the WebSocket adapter in difference situation.
+* The application shows the Connection status with an additional message via the Desktop Title Bar. The following sample screenshot shows sample messages from the WebSocket adapter in a different situation.
 
     Server Unavailable or unable to connect to the server.
-    ![Error1](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/exe3.JPG)
+    ![Error1](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/exe3.JPG)
 
     The application is making a connection to the server. While it's waiting, the user can cancel the request by click Cancel button.
-    ![Error2](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/exe4.JPG)
+    ![Error2](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/exe4.JPG)
 
     The connection to the WebSocket server is closed because the DACS user(user1) does not have permission to access the server.
-    ![Error3](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/exe5.JPG)
+    ![Error3](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/exe5.JPG)
 
 * Once the connection has been established and Login accepted by the ADS server, the application will send MRN_STORY item request to the ADS and waiting for a Refresh and Update messages back from the server. When the MRN Manager receives a complete MRN update, it will raise a message event back to the application layer and then the application can add the message to the internal list and bind it to DataGridView. 
 
 Below is a screenshot when the application receiving MRN Story update. It shows the timestamp application received the message with the Story Headline in the DataGridView. It also shows a whole message size in bytes and the fragment count which is a number of update messages before it assembly to the same story.
-
-![newsstory1](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/onmessage1.jpg)
+    ![news2](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/onmessage1.JPG)
 
 ### Displaying a News Story
 
 To display a full story, the user must double click at specific row containing headline they are interesting on the DataGridView and then the application will pop up a new Dialog containing a full story with additional details such as Topics Code related to the News. 
 
 Below is screenshot when the application shows the full story.
-![newssc](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/newsstory1.jpg)
+    ![newssc](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/newsstory1.JPG)
 
-* There is an option for user to copy only the News Story to clipboard(click Copy Body to Clipbaord) or save original MRN_STORY JSON data to file(click JSON data to file).
-    ![newsc2](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/saveJSON.JPG)
+* There is an option for the user to copy only the News Story to the clipboard(click Copy Body to Clipboard) or save original MRN_STORY JSON data to file(click JSON data to file).
+    ![newsc2](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/blob/master/images/saveJSON.JPG)
 
-Plese refer to [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://developers.refinitiv.com/elektron/elektron-sdk-cc/docs?content=8681&type=documentation_item) for the structure of JSON data inside .JSON file.
+Please refer to [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://developers.refinitiv.com/elektron/elektron-sdk-cc/docs?content=8681&type=documentation_item) for the structure of the JSON data inside .json file.
 
 * Please note that the application using .NET Dictionary class to catching the MRN_STORY object inside the application, hence the user may experience the case that memory keeps growing when running the application for a long period of time. 
 
@@ -555,7 +550,7 @@ Plese refer to [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://devel
 This article provides example applications to demonstrate Elektron WebSocket API usage. It also uses ClientWebSocket class from .NET Core 3.0 SDK to communicate with WebSocket server on the TREP ADS server. The solution project also provides a sample WebSocket adapter library which developer can re-use it to build a cross-platform console application and WPF Windows desktop application. The solution project also provides an MRNStoryViewer Desktop application which user can use to test the WebSocket server and displaying a News Story on the desktop application and it also has an option for a user to save the JSON data to file. This should help a user to explorer MRN_STORY data from Elektron data feed.
 
 # Download
-Please download solution projects from [Github](https://github.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer).
+Please download solution projects from Github.
 
 # References
 
@@ -568,10 +563,8 @@ Please download solution projects from [Github](https://github.com/Refinitiv-API
 * [ClientWebSocket Class .NET Core reference](https://docs.microsoft.com/en-us/dotnet/api/system.net.websockets.clientwebsocket?view=netcore-3.0)
 
 ## Authors
-
 * **Moragodkrit Chumsri** - Release 1.0.  *Initial work*
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
