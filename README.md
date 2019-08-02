@@ -1,0 +1,2 @@
+# Example.WebSocketAPI.CSharp.MRNWebSocketViewer
+This example demonstrates how to use .NET Core SDK with WPF to create a desktop application to retrieving and displaying MRN News Story from the WebSocket server on ADS 3.2.1 or higher version. The application use ClientWebSocket interface from .NET Core framework with JSON.NET library to create a Client WebSocket adapter library for communicating with WebSocket server on the ADS.
