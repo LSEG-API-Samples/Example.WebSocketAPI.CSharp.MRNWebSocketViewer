@@ -529,7 +529,7 @@ Then you can copy mrnviewerapp_release to run on the other Windows 10 and you do
 
 * Once the connection has been established and Login accepted by the ADS server, the application will send MRN_STORY item request to the ADS and waiting for a Refresh and Update messages back from the server. When the MRN Manager receives a complete MRN update, it will raise a message event back to the application layer and then the application can add the message to the internal list and bind it to DataGridView. 
 
-Below is a screenshot when the application receiving MRN Story update. It shows the timestamp application received the message with the Story Headline in the DataGridView. It also shows a whole message size in bytes and the fragment count which is a number of update messages before it assembly to the same story.
+Below is a screenshot when the application receiving MRN Story update. It shows the timestamp application received the message with the Story Headline in the DataGridView. It also shows a whole message size in bytes and the fragment count which is the number of update messages before it assembly to the same story.
 
 ![OnMessage1](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/onmessage1.jpg)
 
@@ -537,7 +537,7 @@ Below is a screenshot when the application receiving MRN Story update. It shows 
 
 To display a full story, the user must double click at specific row containing headline they are interesting on the DataGridView and then the application will pop up a new Dialog containing a full story with additional details such as Topics Code related to the News. 
 
-Below is a screenshot when the application receiving MRN Story update. It shows the timestamp application received the message with the Story Headline in the DataGridView. It also shows a whole message size in bytes and the fragment count which is a number of update messages before it assembly to the same story.
+Below is a screenshot when the application receiving MRN Story update. It shows the timestamp application received the message with the Story Headline in the DataGridView. It also shows a whole message size in bytes and the fragment count which is the number of update messages before it assembly to the same story.
 
 ![newsstory1](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/newsstory1.jpg)
 
