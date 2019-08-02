@@ -1,0 +1,97 @@
+﻿<Window x:Class="MRNWebsocketViewer.ShowStory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ShowStory" Height="700" Width="1000" Background="#FF1F5C8E">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="7.8*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.1*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1" Width="Auto" CanHorizontallyScroll="True"
+                    CanVerticallyScroll="True" Margin="2,1.875,2,2.061">
+            <TextBlock x:Name="PnacLabel" Text="altId/PNAC" TextAlignment="Right"
+                       FontSize="12" Foreground="White"  />
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Width="Auto" CanHorizontallyScroll="True"
+                    CanVerticallyScroll="True" Margin="2,1.875,2,2.061">
+            <TextBox x:Name="PnacTxt"
+                     FontSize="12"
+                     TextWrapping="Wrap"
+                     Foreground="White"
+                     Background="#FF176588"
+                     Width="Auto" Text="{Binding Story.AltId}" Height="30"/>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Width="Auto" Margin="2,1.939,2,1.872">
+            <TextBlock x:Name="TopicCodeLabel" Text="Topic Code" TextAlignment="Right"
+                       FontSize="12" Foreground="White" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Width="Auto" CanHorizontallyScroll="True"
+                    CanVerticallyScroll="True" Margin="2,1.939,2,1.872">
+            <TextBox x:Name="TopicCodeTxt"
+                     FontSize="12"
+                     TextWrapping="Wrap"
+                     Foreground="White"
+                     Background="#FF176588"
+                     Width="Auto" Height="40" VerticalScrollBarVisibility="Auto" />
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="0" Grid.Row="3" Width="Auto" Margin="2,2.128,2,1.683">
+            <TextBlock x:Name="HeadlineLabel" Text="Headline" TextAlignment="Right"
+                       FontSize="12" Foreground="White" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="3" Width="Auto" CanHorizontallyScroll="True"
+                    CanVerticallyScroll="True" Margin="2,2.128,2,1.683">
+            <TextBox x:Name="HeadlineTxt"
+                     FontSize="12"
+                     Height="30"
+                     Foreground="White"
+                     Background="#FF176588"
+                     Width="Auto" Text="{Binding Story.Headline}" />
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="0" Grid.Row="4" Width="Auto" Margin="2,2.317,2,1.542">
+            <TextBlock x:Name="BodyLabel" Text="Body" TextAlignment="Right"
+                       FontSize="12" Foreground="White" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="4" Width="Auto" CanHorizontallyScroll="True"
+                    CanVerticallyScroll="True" Margin="2,2.317,2,1.542">
+            <TextBox x:Name="BodyTxt"
+                     FontSize="12"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Visible"
+                     HorizontalScrollBarVisibility="Visible"
+                     Foreground="DarkBlue"
+                     Background="#FFF5F5F7"
+                     Height="490" MaxHeight="500" Padding="5"  Width="Auto" Text="{Binding Story.Body}" />
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="5" Width="Auto" Margin="0,2.458,0,2.478" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="BodyToClipBtn" Content="Copy Body To Clipboard" Margin="2" Width="150" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top"  Click="BodyToClipBtn_OnClick"/>
+            <Button Name="SaveJsonBtn" Content="Save JSON data To File" Margin="2" Width="150" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top"  Click="SaveJsonBtn_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

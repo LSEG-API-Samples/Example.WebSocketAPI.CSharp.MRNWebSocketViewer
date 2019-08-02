@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebsocketAdapter", "WebsocketAdapter\WebsocketAdapter.csproj", "{382D082D-67C4-4E2C-B27B-CCEC802097EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDataWebSocket", "MRNManager\MarketDataWebSocket.csproj", "{EA4061D3-A9EE-463E-B152-DBC17482ABD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRNWebsocketViewerApp", "MRNViewerApp\MRNWebsocketViewerApp.csproj", "{33FDEAB0-2F79-4A06-BDF5-1667C4CAA289}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSocketMRNConsumerConsoleApp", "WebSocketMRNConsumerApp\WebSocketMRNConsumerConsoleApp.csproj", "{10C20EE6-3D06-4E89-B677-43E00C0E1BED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{382D082D-67C4-4E2C-B27B-CCEC802097EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382D082D-67C4-4E2C-B27B-CCEC802097EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382D082D-67C4-4E2C-B27B-CCEC802097EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382D082D-67C4-4E2C-B27B-CCEC802097EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4061D3-A9EE-463E-B152-DBC17482ABD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4061D3-A9EE-463E-B152-DBC17482ABD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4061D3-A9EE-463E-B152-DBC17482ABD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4061D3-A9EE-463E-B152-DBC17482ABD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FDEAB0-2F79-4A06-BDF5-1667C4CAA289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FDEAB0-2F79-4A06-BDF5-1667C4CAA289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FDEAB0-2F79-4A06-BDF5-1667C4CAA289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FDEAB0-2F79-4A06-BDF5-1667C4CAA289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10C20EE6-3D06-4E89-B677-43E00C0E1BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C20EE6-3D06-4E89-B677-43E00C0E1BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C20EE6-3D06-4E89-B677-43E00C0E1BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C20EE6-3D06-4E89-B677-43E00C0E1BED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9ADD64B5-F409-4E09-A9DD-6B0624F5A021}
+	EndGlobalSection
+EndGlobal
