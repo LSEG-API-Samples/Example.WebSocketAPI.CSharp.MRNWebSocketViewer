@@ -39,7 +39,7 @@ The following is the steps to get the MRN Story data from the ADS server.
 
 * User has to input a WebSocket endpoint and the DACS User, AppID and DACS Position and then click connect button. Note that if the ADS setup with DACS enabled, it requires a valid DACS user to connecting to the server. After the user click connects the UI layer has to register to receive events from an event source which is WebSocketClient and MRNStoryManager class. 
 
-* The application then passes input parameters to WebSocketConnectionClient when it creates a new object. This class will be used by MrnStoryManager to make a connection to a WebSocket server and to send and receive a message from the server. Note that it has to add subprotocol "**tr_JSON2**" to connection option otherwise, the server will not accept the connection. 
+* The application then passes input parameters to WebSocketConnectionClient when it creates a new object. This class will be used by MrnStoryManager to make a connection to a WebSocket server and to send and receive a message from the server. Note that it has to add subprotocol "**tr_json2**" to connection option otherwise, the server will not accept the connection. 
 
 ### How the application receives a message from a WebSocket Connection
 
