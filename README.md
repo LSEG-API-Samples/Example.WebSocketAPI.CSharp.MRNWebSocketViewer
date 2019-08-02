@@ -460,7 +460,7 @@ Exit the app
 When the connection between the console application and WebSocket server has gone down, the MRN Manager will close the connection and attempt to make a new connection to the server on behalf of the application. So user should be able to receive the update message when it can establish to the WebSocket server again.
 
 
-## Build and Run MRNViewerApp
+## Build and Run MRNWebsocketViewerApp
 
 The MRNWebSocketViewerApp is a WPF desktop application which supports running on Windows OS only. This project using WPF with .NET Core 3.0 Preview to create the application so you can deploy the app using Self-Contained Deployment(SCD) like the other .NET Core application. The benefit of using this approach, you have control of the version of .NET Core that is deployed with your app and the other apps or updates cannot break the behavior. While some of the disadvantages is that the size of your deployment package is relatively large, since you have to include .NET Core as well as your app and its third-party dependencies. Anyway, it still easy to copy only the target build directory to share the application. 
 
