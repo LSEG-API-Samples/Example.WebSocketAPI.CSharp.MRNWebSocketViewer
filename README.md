@@ -21,7 +21,7 @@ Please note that the sample application can just be connecting and retrieving MR
 
 ![application](https://raw.githubusercontent.com/Refinitiv-API-Samples/Example.WebSocketAPI.CSharp.MRNWebSocketViewer/master/images/MainScreenWithStoryPage.JPG)
 
-The main solution for the sample application consisting of four projects. There is two projects for WPF Desktop application and the sample console application. Another two projects are additional libraries for WebSocket Client adapter and MarketData WebSocket library. 
+The main solution for the sample application consisting of four projects. There are two projects for WPF Desktop application and the sample console application. Another two projects are additional libraries for WebSocket Client adapter and MarketData WebSocket library. 
 
 * The WebSocket client adapter is a library built on top of .NET Core ClientWebSocket class. It is responsible for handling a connection to a WebSocket server and sending or receiving a message from the ADS. The adapter provides a set of callback functions or delegates for handling and raising events to notify the application when it received a new message from the server. The application also provides events for connection status and errors from .NET ClientWebSocket. 
 
@@ -545,7 +545,7 @@ Below is a screenshot when the application receiving MRN Story update. It shows 
 * There is an option for the user to copy only the News Story to the clipboard(click Copy Body to Clipboard) or save original MRN_STORY JSON data to file(click JSON data to file).
 
 
-Please refer to [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://developers.refinitiv.com/elektron/elektron-sdk-cc/docs?content=8681&type=documentation_item) for the structure of the JSON data inside .json file.
+Please refer to [MRN DATA MODELS AND ELEKTRON IMPLEMENTATION GUIDE](https://developers.refinitiv.com/elektron/elektron-sdk-cc/docs?content=8681&type=documentation_item) for the structure of the JSON data inside the JSON file.
 
 * Please note that the application using .NET Dictionary class to catching the MRN_STORY object inside the application, hence the user may experience the case that memory keeps growing when running the application for a long period of time. 
 
