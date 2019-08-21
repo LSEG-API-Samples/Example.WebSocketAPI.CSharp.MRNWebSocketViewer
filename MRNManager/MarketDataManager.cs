@@ -29,7 +29,7 @@ namespace MarketDataWebSocket
                  MsgType = MessageTypeEnum.Request,
                  Key = new MessageKey()
             };
-            loginReq.Key.Elements = new Dictionary<string, object>{{"ApplicationId", appID}, {"Position", "127.0.0.1/net"}};
+            loginReq.Key.Elements = new Dictionary<string, object>{{"ApplicationId", appID}, {"Position", position}};
             loginReq.Key.Name = new List<string> {username};
 
             await ClientWebSocketUtils.SendTextMessage(_websocket.WebSocket, loginReq.ToJson());
